@@ -1,4 +1,4 @@
-##Platty Landing Page
+## Platty Landing Page
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/03753ac7-ee87-4059-90f0-6d146606455a/deploy-status)](https://app.netlify.com/sites/cocky-banach-904b58/deploys)
 
