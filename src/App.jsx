@@ -1,4 +1,12 @@
-import React from "react";
-import { Router } from "./Router";
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { Router } from './Router';
+import { theme } from './common/styles/index';
 
-export const App = () => <Router />;
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <Router />
+  </ThemeProvider>
+);
+
+export default App;
