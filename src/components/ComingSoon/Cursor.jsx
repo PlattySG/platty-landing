@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import './Cursor.css';
 
@@ -28,21 +28,21 @@ export const Cursor = () => {
     setHidden(false);
   };
 
-  const addEventListeners = () => {
+  const addEventListeners = useCallback(() => {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseenter', onMouseEnter);
     document.addEventListener('mouseleave', onMouseLeave);
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mouseup', onMouseUp);
-  };
+  }, []);
 
-  const removeEventListeners = () => {
+  const removeEventListeners = useCallback(() => {
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseenter', onMouseEnter);
     document.removeEventListener('mouseleave', onMouseLeave);
     document.removeEventListener('mousedown', onMouseDown);
     document.removeEventListener('mouseup', onMouseUp);
-  };
+  }, []);
 
   const handleLinkHoverEvents = () => {
     document.querySelectorAll('.hovered').forEach((el) => {
@@ -55,7 +55,7 @@ export const Cursor = () => {
     addEventListeners();
     handleLinkHoverEvents();
     return () => removeEventListeners();
-  }, []);
+  }, [addEventListeners, removeEventListeners]);
 
   const cursorClasses = classNames('cursor', {
     'cursor--clicked': clicked,

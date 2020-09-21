@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 import { size } from '../../common/styles';
 import { Cursor } from './Cursor';
-import platty from '../Home/Banner/platty.png';
 
 const Styles = styled.div`
   height: calc(100vh - ${size(10)}px);
