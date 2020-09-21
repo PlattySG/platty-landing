@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import logo from './logo.png';
@@ -10,11 +10,16 @@ const Styles = styled.div`
 
   .nav-bar {
     padding: ${size(2)}px;
+    z-index: 999;
   }
 
   .logo {
     height: ${size(6)}px;
     width: 'auto';
+  }
+
+  .display-none {
+    cursor: none !important;
   }
 
   .custom-nav-link {
@@ -28,23 +33,35 @@ const Styles = styled.div`
   }
 `;
 
-export const NavigationBar = () => (
-  <Styles>
-    <Container>
-      <Navbar expand="sm" className="nav-bar">
-        <Link to="/">
-          <img src={logo} className="logo" alt="Platty Logo" />
-        </Link>
-        <Navbar.Toggle />
-        <Navbar.Collapse>
-          <Nav className="ml-auto align-items-center">
-            <Link to="/contact" className="custom-nav-link">
-              Be Our Partner!
-            </Link>
-            <Button variant="outline-light">Download Platty</Button>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    </Container>
-  </Styles>
-);
+export const NavigationBar = () => {
+  const match = useRouteMatch('/comingsoon');
+
+  return (
+    <Styles>
+      <Container className={match ? 'display-none' : ''}>
+        <Navbar expand="sm" className="nav-bar">
+          <Link to="/">
+            <img src={logo} className="logo" alt="Platty Logo" />
+          </Link>
+          {!match && (
+            <>
+              <Navbar.Toggle />
+              <Navbar.Collapse>
+                <Nav className="ml-auto align-items-center">
+                  <Link to="/contact" className="custom-nav-link">
+                    Be Our Partner!
+                  </Link>
+                  <Link to="/comingsoon">
+                    <Button variant="outline-light">
+                      Download Platty
+                    </Button>
+                  </Link>
+                </Nav>
+              </Navbar.Collapse>
+            </>
+          )}
+        </Navbar>
+      </Container>
+    </Styles>
+  );
+};
