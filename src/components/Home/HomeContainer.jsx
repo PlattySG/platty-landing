@@ -7,6 +7,5 @@ const Styles = styled.div``;
 export const HomeContainer = () => (
   <Styles>
     <Banner />
-    <h1>Hello</h1>
   </Styles>
 );
